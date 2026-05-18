@@ -1,7 +1,7 @@
 [
   {
     "route": "/pipelines",
-    "firstLoadUncompressedJsBytes": 1180899,
+    "firstLoadUncompressedJsBytes": 1180868,
     "firstLoadChunkPaths": [
       ".next/static/chunks/01xlw8hd842-c.js",
       ".next/static/chunks/0d3shmwh5_nmn.js",
@@ -11,7 +11,7 @@
       ".next/static/chunks/0f1m.ooro.zmz.js",
       ".next/static/chunks/0qay6dnj.qe_z.js",
       ".next/static/chunks/083s1rqizz2x-.js",
-      ".next/static/chunks/0z38piouh3rl6.js",
+      ".next/static/chunks/0v7ezysuh7x2f.js",
       ".next/static/chunks/12g5mnqi7od30.js",
       ".next/static/chunks/0tqw92rmd8ixn.js",
       ".next/static/chunks/02i7dfk78~t~2.js",

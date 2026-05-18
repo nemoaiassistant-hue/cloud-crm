@@ -231,7 +231,7 @@ export default function PipelinesPage() {
           {pipelines.length > 0 && (
             <Select value={selectedPipelineId} onValueChange={(v) => { if (v) setSelectedPipelineId(v); }}>
               <SelectTrigger className="w-52 ml-2">
-                <SelectValue placeholder="Select pipeline" />
+                {selectedPipeline ? selectedPipeline.name : "Select pipeline"}
               </SelectTrigger>
               <SelectContent>
                 {pipelines.map((p) => (
