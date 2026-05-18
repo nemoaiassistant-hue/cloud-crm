@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { opportunitySchema } from "@/lib/validations";
 
-const TENANT_ID = "demo-tenant-001";
+import { getTenantId } from "@/lib/auth";
 
 export async function GET(
   _request: NextRequest,
@@ -16,7 +16,7 @@ export async function GET(
       .from("opportunities")
       .select("*, contacts(first_name, last_name)")
       .eq("id", id)
-      .eq("tenant_id", TENANT_ID)
+      .eq("tenant_id", await getTenantId())
       .single();
 
     if (error) {
@@ -64,7 +64,7 @@ export async function PUT(
         updated_at: new Date().toISOString(),
       } as any)
       .eq("id", id)
-      .eq("tenant_id", TENANT_ID)
+      .eq("tenant_id", await getTenantId())
       .select("*, contacts(first_name, last_name)")
       .single() as any;
 
@@ -93,7 +93,7 @@ export async function DELETE(
       .from("opportunities")
       .delete()
       .eq("id", id)
-      .eq("tenant_id", TENANT_ID);
+      .eq("tenant_id", await getTenantId());
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });

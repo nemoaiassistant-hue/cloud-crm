@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { opportunitySchema } from "@/lib/validations";
 import type { Opportunity } from "@/types/database";
 
-const TENANT_ID = "demo-tenant-001";
+import { getTenantId } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
   try {
@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     let query = supabase
       .from("opportunities")
       .select("*, contacts(first_name, last_name)")
-      .eq("tenant_id", TENANT_ID)
+      .eq("tenant_id", await getTenantId())
       .order("created_at", { ascending: false });
 
     if (pipelineId) {
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       .from("opportunities")
       .insert({
         ...parsed.data,
-        tenant_id: TENANT_ID,
+        tenant_id: await getTenantId(),
       } as any)
       .select("*, contacts(first_name, last_name)")
       .single();

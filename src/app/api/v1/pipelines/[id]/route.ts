@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { pipelineSchema } from "@/lib/validations";
 import type { Pipeline } from "@/types/database";
 
-const TENANT_ID = "demo-tenant-001";
+import { getTenantId } from "@/lib/auth";
 
 export async function GET(
   _request: NextRequest,
@@ -17,7 +17,7 @@ export async function GET(
       .from("pipelines")
       .select("*, pipeline_stages(*)")
       .eq("id", id)
-      .eq("tenant_id", TENANT_ID)
+      .eq("tenant_id", await getTenantId())
       .single() as any;
 
     if (error) {
@@ -60,7 +60,7 @@ export async function PUT(
       .from("pipelines")
       .update(parsed.data as any)
       .eq("id", id)
-      .eq("tenant_id", TENANT_ID)
+      .eq("tenant_id", await getTenantId())
       .select()
       .single() as any;
 
@@ -89,7 +89,7 @@ export async function DELETE(
       .from("pipelines")
       .delete()
       .eq("id", id)
-      .eq("tenant_id", TENANT_ID);
+      .eq("tenant_id", await getTenantId());
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });

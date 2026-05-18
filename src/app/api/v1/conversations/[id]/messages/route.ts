@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { messageSchema } from "@/lib/validations";
 
-const TENANT_ID = "demo-tenant-001";
+import { getTenantId } from "@/lib/auth";
 
 export async function GET(
   _request: NextRequest,
@@ -16,7 +16,7 @@ export async function GET(
       .from("messages")
       .select("*")
       .eq("conversation_id", id)
-      .eq("tenant_id", TENANT_ID)
+      .eq("tenant_id", await getTenantId())
       .order("sent_at", { ascending: true });
 
     if (error) {
@@ -56,7 +56,7 @@ export async function POST(
       .from("messages")
       .insert({
         ...parsed.data,
-        tenant_id: TENANT_ID,
+        tenant_id: await getTenantId(),
       } as any)
       .select()
       .single();

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import type { Conversation } from "@/types/database";
 
-const TENANT_ID = "demo-tenant-001";
+import { getTenantId } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
   try {
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     let query = supabase
       .from("conversations")
       .select("*, contacts(first_name, last_name)")
-      .eq("tenant_id", TENANT_ID)
+      .eq("tenant_id", await getTenantId())
       .order("created_at", { ascending: false });
 
     if (status) {
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     const { data, error } = await supabase
       .from("conversations")
       .insert({
-        tenant_id: TENANT_ID,
+        tenant_id: await getTenantId(),
         contact_id: body.contact_id,
         channel: body.channel || "sms",
         status: body.status || "open",

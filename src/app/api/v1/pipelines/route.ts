@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { pipelineSchema } from "@/lib/validations";
 import type { Pipeline } from "@/types/database";
 
-const TENANT_ID = "demo-tenant-001";
+import { getTenantId } from "@/lib/auth";
 
 export async function GET() {
   try {
@@ -12,7 +12,7 @@ export async function GET() {
     const { data, error } = await supabase
       .from("pipelines")
       .select("*, pipeline_stages(*)")
-      .eq("tenant_id", TENANT_ID)
+      .eq("tenant_id", await getTenantId())
       .order("sort_order", { ascending: true });
 
     if (error) {
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       .from("pipelines")
       .insert({
         ...parsed.data,
-        tenant_id: TENANT_ID,
+        tenant_id: await getTenantId(),
       } as any)
       .select()
       .single();

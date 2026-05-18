@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
-const TENANT_ID = "demo-tenant-001";
+import { getTenantId } from "@/lib/auth";
 
 export async function GET(
   _request: NextRequest,
@@ -15,7 +15,7 @@ export async function GET(
       .from("conversations")
       .select("*, contacts(first_name, last_name)")
       .eq("id", id)
-      .eq("tenant_id", TENANT_ID)
+      .eq("tenant_id", await getTenantId())
       .single();
 
     if (error) {

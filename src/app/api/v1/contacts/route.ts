@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { contactSchema } from "@/lib/validations";
 import type { Contact } from "@/types/database";
 
-const TENANT_ID = "demo-tenant-001";
+import { getTenantId } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
   try {
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     let query = supabase
       .from("contacts")
       .select("*", { count: "exact" })
-      .eq("tenant_id", TENANT_ID)
+      .eq("tenant_id", await getTenantId())
       .order("created_at", { ascending: false })
       .range(offset, offset + limit - 1);
 
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
 
     const insertData = {
       ...parsed.data,
-      tenant_id: TENANT_ID,
+      tenant_id: await getTenantId(),
     } as Record<string, unknown>;
 
     const { data, error } = await supabase
