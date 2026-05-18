@@ -225,13 +225,12 @@ export default function PipelinesPage() {
   return (
     <div className="flex flex-col h-full">
       {/* Top Bar */}
-      <div className="flex items-center justify-between p-4 border-b bg-background">
+      <div className="flex items-center justify-between px-4 py-3 border-b bg-background">
         <div className="flex items-center gap-3">
-          <LayoutGrid className="size-5 text-muted-foreground" />
-          <h1 className="text-lg font-semibold">Pipelines</h1>
+          <h1 className="text-xl font-semibold tracking-tight">Pipelines</h1>
           {pipelines.length > 0 && (
             <Select value={selectedPipelineId} onValueChange={(v) => { if (v) setSelectedPipelineId(v); }}>
-              <SelectTrigger className="w-48">
+              <SelectTrigger className="w-52 ml-2">
                 <SelectValue placeholder="Select pipeline" />
               </SelectTrigger>
               <SelectContent>
@@ -243,8 +242,17 @@ export default function PipelinesPage() {
               </SelectContent>
             </Select>
           )}
+          {selectedPipeline && opportunities.length > 0 && (
+            <div className="hidden sm:flex items-center gap-3 ml-3 text-sm text-muted-foreground">
+              <span>{opportunities.length} opportunities</span>
+              <span>•</span>
+              <span className="font-medium text-foreground">
+                {opportunities.reduce((s, o) => s + (o.value || 0), 0).toLocaleString("sv-SE")} kr total
+              </span>
+            </div>
+          )}
         </div>
-        <Button onClick={() => setCreatePipelineOpen(true)}>
+        <Button onClick={() => setCreatePipelineOpen(true)} size="sm">
           <Plus className="size-4" />
           Add Pipeline
         </Button>
@@ -320,11 +328,12 @@ export default function PipelinesPage() {
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <Label>Value ($)</Label>
+                <Label>Value (kr)</Label>
                 <Input
                   type="number"
                   value={editValue}
                   onChange={(e) => setEditValue(e.target.value)}
+                  placeholder="e.g. 45000"
                 />
               </div>
               <div className="flex flex-col gap-1.5">

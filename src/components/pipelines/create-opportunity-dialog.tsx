@@ -150,15 +150,15 @@ export function CreateOpportunityDialog({
             </Select>
           </div>
           <div className="flex flex-col gap-1.5">
-            <Label htmlFor="opp-value">Value ($)</Label>
+            <Label htmlFor="opp-value">Value (kr)</Label>
             <Input
               id="opp-value"
               type="number"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder="0"
+              placeholder="e.g. 45000"
               min="0"
-              step="0.01"
+              step="1"
             />
           </div>
           <DialogFooter>
