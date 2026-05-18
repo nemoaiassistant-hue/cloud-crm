@@ -60,4 +60,31 @@ export type PipelineStageInput = z.infer<typeof pipelineStageSchema>;
 export type OpportunityInput = z.infer<typeof opportunitySchema>;
 export type TaskInput = z.infer<typeof taskSchema>;
 export type MessageInput = z.infer<typeof messageSchema>;
+export const formSchema = z.object({
+  name: z.string().min(1, "Form name is required"),
+  description: z.string().nullable().optional(),
+  fields: z.array(
+    z.object({
+      id: z.string(),
+      type: z.enum(["text", "email", "phone", "textarea", "select", "checkbox", "radio"]),
+      label: z.string().min(1, "Label is required"),
+      placeholder: z.string().optional().default(""),
+      required: z.boolean().optional().default(false),
+      options: z.array(z.string()).optional().default([]),
+    })
+  ).optional().default([]),
+  submit_button_text: z.string().optional().default("Submit"),
+  success_message: z.string().optional().default("Thank you for your submission!"),
+  redirect_url: z.string().url("Invalid URL").nullable().optional(),
+  is_active: z.boolean().optional().default(true),
+});
+
+export const formSubmissionSchema = z.object({
+  data: z.record(z.string(), z.unknown()),
+  source: z.string().nullable().optional(),
+  create_contact: z.boolean().optional().default(false),
+});
+
+export type FormInput = z.infer<typeof formSchema>;
+export type FormSubmissionInput = z.infer<typeof formSubmissionSchema>;
 export type TenantInput = z.infer<typeof tenantSchema>;

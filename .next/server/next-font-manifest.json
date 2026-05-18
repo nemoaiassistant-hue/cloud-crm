@@ -8,6 +8,18 @@
       "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
       "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
     ],
+    "[project]/src/app/(dashboard)/calendar/page": [
+      "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
+      "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
+    ],
+    "[project]/src/app/(dashboard)/chatbots/[id]/page": [
+      "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
+      "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
+    ],
+    "[project]/src/app/(dashboard)/chatbots/page": [
+      "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
+      "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
+    ],
     "[project]/src/app/(dashboard)/contacts/[id]/page": [
       "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
       "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
@@ -24,11 +36,35 @@
       "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
       "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
     ],
+    "[project]/src/app/(dashboard)/forms/[id]/page": [
+      "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
+      "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
+    ],
+    "[project]/src/app/(dashboard)/forms/[id]/submissions/page": [
+      "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
+      "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
+    ],
+    "[project]/src/app/(dashboard)/forms/page": [
+      "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
+      "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
+    ],
+    "[project]/src/app/(dashboard)/inbox/page": [
+      "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
+      "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
+    ],
     "[project]/src/app/(dashboard)/pipelines/page": [
       "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
       "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
     ],
     "[project]/src/app/(dashboard)/tasks/page": [
+      "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
+      "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
+    ],
+    "[project]/src/app/(dashboard)/workflows/[id]/page": [
+      "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
+      "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
+    ],
+    "[project]/src/app/(dashboard)/workflows/page": [
       "static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
       "static/media/797e433ab948586e-s.p.09zddjkbdep5a.woff2"
     ],
